@@ -7,7 +7,6 @@ from sklearn.preprocessing import MinMaxScaler
 pd.options.mode.chained_assignment = None
 
 def set_delta(i: int, delta_i: int, offset: int, df: pd.DataFrame, column: str, delta_column: str):
-
     if i > delta_i:
         try:
             df[f'{delta_column}{delta_i}']
@@ -20,8 +19,9 @@ def set_delta(i: int, delta_i: int, offset: int, df: pd.DataFrame, column: str, 
         df.at[i + offset, f'{delta_column}{delta_i}'] = perc_deltaDI
         
 
+# Populate weight delta
 def populate_delta(df: pd.DataFrame, offset: int = 0):
-    df['weight_delta_diff'] = df['weight_kg'].diff()
+    df['weight_delta'] = df['weight_kg'].diff()
     df['weight_delta_percent'] = 0
 
     for i in range(1, len(df)):
@@ -31,23 +31,12 @@ def populate_delta(df: pd.DataFrame, offset: int = 0):
         curr = df.iloc[i]
         perc_delta = (curr['weight_kg'] - prev['weight_kg']) / prev['weight_kg']
         df.at[i + offset, 'weight_delta_percent'] = perc_delta
-        # Calculate last 5 diff
+        # Calculate diffs
         set_delta(i, 3, offset, df, 'weight_kg', 'weight_perc_l')
         set_delta(i, 5, offset, df, 'weight_kg', 'weight_perc_l')
         set_delta(i, 10, offset, df, 'weight_kg', 'weight_perc_l')
         set_delta(i, 30, offset, df, 'weight_kg', 'weight_perc_l')
-        # set_delta(i, 60, offset, df, 'weight_kg', 'weight_perc_l')
-        # set_delta(i, 90, offset, df, 'weight_kg', 'weight_perc_l')
-        # set_delta(i, 120, offset, df, 'weight_kg', 'weight_perc_l')
-
-        # if i > 5:
-        #     prev5 = df.iloc[i - 5]
-        #     perc_delta5 = (curr['weight_kg'] - prev5['weight_kg']) / prev5['weight_kg']
-        #     df.at[i + offset, 'weight_perc_l5'] = perc_delta5
-        # if i > 10:
-        #     prev10 = df.iloc[i - 10]
-        #     perc_delta10 = (curr['weight_kg'] - prev10['weight_kg']) / prev10['weight_kg']
-        #     df.at[i + offset, 'weight_perc_l10'] = perc_delta10
+        
     return df
 
 def populate_humidity_delta(df: pd.DataFrame, offset: int = 0):
@@ -61,18 +50,30 @@ def populate_humidity_delta(df: pd.DataFrame, offset: int = 0):
 
 def populate_temp_delta(df: pd.DataFrame, offset: int = 0):
     df['temp_io_diff'] = 0.
-    df['temp_mid'] = (df['t_i_1'] + df['t_i_2'] + df['t_i_3'] + df['t_i_4']) / 4
-    df['temp_io_diff_smart'] = df['temp_mid'] - df['t_o']
+    # Get all temperature columns
+    temps = [df['t_i_1'], df['t_i_2'], df['t_i_3'], df['t_i_4'], df['t_i_5']]
+    
+    # Calculate mean only for non-NaN values in each row
+    df['temp_mid'] = pd.concat(temps, axis=1).apply(lambda x: x[~pd.isna(x)].mean(), axis=1)
+    df['temp_io_diff_smart'] = np.where(
+        pd.isna(df['temp_mid']) | pd.isna(df['t_o']), 
+        np.nan,
+        df['temp_mid'] - df['t_o']
+    )
     df['t_delta_percent'] = 0.
 
     for i in range(1, len(df)):
         if i == 0:
             continue
         prev = df.iloc[i - 1]
-        curr = df.iloc[i]
-        perc_delta = (curr['t_i_1'] - prev['t_i_1']) / prev['t_i_1']
+        current = df.iloc[i]
+        
+        if prev['temp_mid'] == 0 or np.isnan(prev['temp_mid']):
+            continue
+        
+        perc_delta = (current['temp_mid'] - prev['temp_mid']) / prev['temp_mid']
         df.at[i + offset, 't_delta_percent'] = perc_delta
-        df.at[i + offset, 'temp_io_diff'] = curr['t_i_1'] - curr['t_o']
+        df.at[i + offset, 'temp_io_diff'] = current['temp_mid'] - current['t_o']
 
         set_delta(i, 3, offset, df, 'temp_mid', 't_perc_l')
         set_delta(i, 5, offset, df, 'temp_mid', 't_perc_l')
@@ -83,7 +84,7 @@ def populate_temp_delta(df: pd.DataFrame, offset: int = 0):
         # set_delta(i, 120, offset, df, 'temp_mid', 't_perc_l')
 
 
-    populate_normalized(df, 'temp_io_diff')
+    # populate_normalized(df, 'temp_io_diff')
     # populate_normalized(df, 't_perc_l3')
     # populate_normalized(df, 't_perc_l5')
     # populate_normalized(df, 't_perc_l10')
