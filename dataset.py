@@ -22,7 +22,7 @@ def set_delta(i: int, delta_i: int, offset: int, df: pd.DataFrame, column: str, 
 # Populate weight delta
 def populate_delta(df: pd.DataFrame, offset: int = 0):
     df['weight_delta'] = df['weight_kg'].diff()
-    df['weight_delta_percent'] = 0
+    df['weight_delta_percent'] = 0.
 
     for i in range(1, len(df)):
         if i == 0:
@@ -257,9 +257,17 @@ def universal_dir_to_split(dir: str, segment_size: int):
 
     return np.array(x), np.array(y)
     
+# def smooth_col(col, threshold=0.3):
+#     c = col.copy()
+#     c[abs(c.diff()) > threshold] = np.nan
+#     c.interpolate(method='linear', inplace=True)
+#     return c
+
 def smooth_col(col, threshold=0.3):
     c = col.copy()
     c[abs(c.diff()) > threshold] = np.nan
+    # Convert to numeric type before interpolating
+    c = pd.to_numeric(c, errors='coerce')
     c.interpolate(method='linear', inplace=True)
     return c
 
