@@ -1,0 +1,522 @@
+[
+  {
+    "hive_number": "0",
+    "event_codes": "",
+    "date_from": "2021-03-17 00:00",
+    "date_to": "2021-03-29 00:00",
+    "year": "2021",
+    "comment": "wakeup"
+  },
+  {
+    "hive_number": "0",
+    "event_codes": "",
+    "date_from": "2020-03-04 00:00",
+    "date_to": "2020-03-27 00:00",
+    "year": "2020",
+    "comment": null
+  },
+  {
+    "hive_number": "5",
+    "event_codes": "f",
+    "date_from": "2019-08-28 00:00",
+    "date_to": "2019-09-4 12:00",
+    "year": "2019",
+    "comment": null
+  },
+  {
+    "hive_number": "5",
+    "event_codes": "f",
+    "date_from": "2019-09-22 10:00",
+    "date_to": "2019-09-26 16:00",
+    "year": "2019",
+    "comment": null
+  },
+  {
+    "hive_number": "17",
+    "event_codes": "fh",
+    "date_from": "2020-08-30 04:00",
+    "date_to": "2020-08-30 22:15",
+    "year": "2020",
+    "comment": null
+  },
+  {
+    "hive_number": "21",
+    "event_codes": "",
+    "date_from": "2022-02-15 00:00",
+    "date_to": "2022-03-26 00:00",
+    "year": "2022",
+    "comment": null
+  },
+  {
+    "hive_number": "21",
+    "event_codes": "qf",
+    "date_from": "2021-02-25 00:00",
+    "date_to": "2021-03-07 00:00",
+    "year": "2021",
+    "comment": null
+  },
+  {
+    "hive_number": "26",
+    "event_codes": "fht",
+    "date_from": "2022-02-01 00:00",
+    "date_to": "2022-05-01 00:00",
+    "year": "2022",
+    "comment": null
+  },
+  {
+    "hive_number": "26",
+    "event_codes": "fht",
+    "date_from": "2020-08-28 00:00",
+    "date_to": "2020-09-17 00:00",
+    "year": "2020",
+    "comment": null
+  },
+  {
+    "hive_number": "26",
+    "event_codes": "fht",
+    "date_from": "2022-09-15 00:00",
+    "date_to": "2022-09-22 00:00",
+    "year": "2022",
+    "comment": null
+  },
+  {
+    "hive_number": "27",
+    "event_codes": "",
+    "date_from": "2021-09-22 00:00",
+    "date_to": "2021-11-20 00:00",
+    "year": "2021",
+    "comment": "normal winter prep"
+  },
+  {
+    "hive_number": "27",
+    "event_codes": "ft",
+    "date_from": "2020-10-01 00:00",
+    "date_to": "2020-10-13 10:15",
+    "year": "2020",
+    "comment": null
+  },
+  {
+    "hive_number": "36",
+    "event_codes": "fts",
+    "date_from": "2020-06-01 00:00",
+    "date_to": "2020-06-05 00:00",
+    "year": "2020",
+    "comment": null
+  },
+  {
+    "hive_number": "43",
+    "event_codes": "d",
+    "date_from": "2019-11-21 08:00",
+    "date_to": "2019-11-25 09:00",
+    "year": "2019",
+    "comment": null
+  },
+  {
+    "hive_number": "47",
+    "event_codes": "",
+    "date_from": "2020-06-17 00:00",
+    "date_to": "2020-07-03 00:00",
+    "year": "2020",
+    "comment": null
+  },
+  {
+    "hive_number": "47",
+    "event_codes": "",
+    "date_from": "2020-04-28 00:00",
+    "date_to": "2020-05-11 00:00",
+    "year": "2020",
+    "comment": null
+  },
+  {
+    "hive_number": "48",
+    "event_codes": "d",
+    "date_from": "2020-03-01 00:00",
+    "date_to": "2020-03-15 00:00",
+    "year": "2020",
+    "comment": "dead"
+  },
+  {
+    "hive_number": "49",
+    "event_codes": "fh",
+    "date_from": "2019-09-06 00:00",
+    "date_to": "2019-10-01 00:00",
+    "year": "2019",
+    "comment": null
+  },
+  {
+    "hive_number": "56",
+    "event_codes": "f",
+    "date_from": "2019-08-28 00:00",
+    "date_to": "2019-08-31 12:00",
+    "year": "2019",
+    "comment": null
+  },
+  {
+    "hive_number": "58",
+    "event_codes": "h",
+    "date_from": "2019-11-08 00:00",
+    "date_to": "2019-11-10 15:00",
+    "year": "2019",
+    "comment": null
+  },
+  {
+    "hive_number": "66",
+    "event_codes": "fh",
+    "date_from": "2020-08-04 00:00",
+    "date_to": "2020-08-07 16:00",
+    "year": "2020",
+    "comment": null
+  },
+  {
+    "hive_number": "67",
+    "event_codes": "",
+    "date_from": "2021-04-02 00:00",
+    "date_to": "2021-04-21 00:00",
+    "year": "2021",
+    "comment": "normal april"
+  },
+  {
+    "hive_number": "69",
+    "event_codes": "f",
+    "date_from": "2020-07-16 00:00",
+    "date_to": "2020-07-23 00:00",
+    "year": "2020",
+    "comment": null
+  },
+  {
+    "hive_number": "72",
+    "event_codes": "fh",
+    "date_from": "2020-07-27 00:00",
+    "date_to": "2020-08-03 00:00",
+    "year": "2020",
+    "comment": null
+  },
+  {
+    "hive_number": "72",
+    "event_codes": "fh",
+    "date_from": "2020-07-09 00:00",
+    "date_to": "2020-07-14 00:00",
+    "year": "2020",
+    "comment": null
+  },
+  {
+    "hive_number": "76",
+    "event_codes": "qhs",
+    "date_from": "2020-06-19 00:00",
+    "date_to": "2020-06-24 00:00",
+    "year": "2020",
+    "comment": null
+  },
+  {
+    "hive_number": "76",
+    "event_codes": "",
+    "date_from": "2021-04-06 14:00",
+    "date_to": "2021-05-20 00:00",
+    "year": "2021",
+    "comment": null
+  },
+  {
+    "hive_number": "79",
+    "event_codes": "",
+    "date_from": "2021-02-22 00:00",
+    "date_to": "2021-06-15 00:00",
+    "year": "2021",
+    "comment": null
+  },
+  {
+    "hive_number": "84",
+    "event_codes": "",
+    "date_from": "2020-06-22 00:00",
+    "date_to": "2020-06-29 00:00",
+    "year": "2020",
+    "comment": "pollination"
+  },
+  {
+    "hive_number": "86",
+    "event_codes": "fs",
+    "date_from": "2021-05-21 00:00",
+    "date_to": "2021-06-04 00:00",
+    "year": "2021",
+    "comment": null
+  },
+  {
+    "hive_number": "88",
+    "event_codes": "",
+    "date_from": "2022-01-01 00:00",
+    "date_to": "2022-05-01 00:00",
+    "year": "2022",
+    "comment": null
+  },
+  {
+    "hive_number": "89",
+    "event_codes": "",
+    "date_from": "2020-05-09 00:00",
+    "date_to": "2020-05-15 00:00",
+    "year": "2020",
+    "comment": null
+  },
+  {
+    "hive_number": "90",
+    "event_codes": "fht",
+    "date_from": "2020-09-12 00:00",
+    "date_to": "2020-09-14 00:00",
+    "year": "2020",
+    "comment": null
+  },
+  {
+    "hive_number": "95",
+    "event_codes": "",
+    "date_from": "2020-07-15 00:00",
+    "date_to": "2020-08-04 00:00",
+    "year": "2020",
+    "comment": null
+  },
+  {
+    "hive_number": "96",
+    "event_codes": "h",
+    "date_from": "2020-12-07 00:00",
+    "date_to": "2020-12-20 00:00",
+    "year": "2020",
+    "comment": "normal winter"
+  },
+  {
+    "hive_number": "96",
+    "event_codes": "h",
+    "date_from": "2020-09-15 00:00",
+    "date_to": "2020-10-01 00:00",
+    "year": "2020",
+    "comment": "normal"
+  },
+  {
+    "hive_number": "97",
+    "event_codes": "ft",
+    "date_from": "2020-10-07 00:00",
+    "date_to": "2020-10-12 00:00",
+    "year": "2020",
+    "comment": null
+  },
+  {
+    "hive_number": "97",
+    "event_codes": "fs",
+    "date_from": "2021-06-15 08:00",
+    "date_to": "2021-06-20 00:00",
+    "year": "2021",
+    "comment": null
+  },
+  {
+    "hive_number": "97",
+    "event_codes": "ft",
+    "date_from": "2020-06-15 00:00",
+    "date_to": "2020-07-01 00:00",
+    "year": "2020",
+    "comment": "pollination"
+  },
+  {
+    "hive_number": "100",
+    "event_codes": "",
+    "date_from": "2021-04-02 00:00",
+    "date_to": "2021-05-01 00:00",
+    "year": "2021",
+    "comment": null
+  },
+  {
+    "hive_number": "100",
+    "event_codes": "",
+    "date_from": "2020-10-7 00:00",
+    "date_to": "2020-11-15 00:00",
+    "year": "2020",
+    "comment": null
+  },
+  {
+    "hive_number": "105",
+    "event_codes": "tds",
+    "date_from": "2020-09-01 00:00",
+    "date_to": "2020-10-01 00:00",
+    "year": "2020",
+    "comment": "dead"
+  },
+  {
+    "hive_number": "105",
+    "event_codes": "tds",
+    "date_from": "2020-05-28 00:00",
+    "date_to": "2020-05-31 00:00",
+    "year": "2020",
+    "comment": "swarming"
+  },
+  {
+    "hive_number": "107",
+    "event_codes": "ft",
+    "date_from": "2020-07-21 00:00",
+    "date_to": "2020-08-01 00:00",
+    "year": "2020",
+    "comment": "2x feeding"
+  },
+  {
+    "hive_number": "109",
+    "event_codes": "",
+    "date_from": "2021-03-01 00:00",
+    "date_to": "2021-03-14 00:00",
+    "year": "2021",
+    "comment": null
+  },
+  {
+    "hive_number": "111",
+    "event_codes": "f",
+    "date_from": "2021-03-05 00:00",
+    "date_to": "2021-03-14 12:00",
+    "year": "2021",
+    "comment": null
+  },
+  {
+    "hive_number": "111",
+    "event_codes": "qfht",
+    "date_from": "2020-05-02 00:00",
+    "date_to": "2020-05-06 00:00",
+    "year": "2020",
+    "comment": null
+  },
+  {
+    "hive_number": "111",
+    "event_codes": "qfht",
+    "date_from": "2020-07-05 00:00",
+    "date_to": "2020-07-20 00:00",
+    "year": "2020",
+    "comment": null
+  },
+  {
+    "hive_number": "111",
+    "event_codes": "qfht",
+    "date_from": "2020-08-07 00:00",
+    "date_to": "2020-08-21 00:00",
+    "year": "2020",
+    "comment": null
+  },
+  {
+    "hive_number": "112",
+    "event_codes": "qfhds",
+    "date_from": "2020-06-08 00:00",
+    "date_to": "2020-06-22 00:00",
+    "year": "2020",
+    "comment": "swarming"
+  },
+  {
+    "hive_number": "118",
+    "event_codes": "fts",
+    "date_from": "2020-05-28 00:00",
+    "date_to": "2020-06-09 00:00",
+    "year": "2020",
+    "comment": "swarming but requires data"
+  },
+  {
+    "hive_number": "118",
+    "event_codes": "s",
+    "date_from": "2021-06-04 00:00",
+    "date_to": "2021-06-08 00:00",
+    "year": "2021",
+    "comment": null
+  },
+  {
+    "hive_number": "119",
+    "event_codes": "fts",
+    "date_from": "2020-05-28 00:00",
+    "date_to": "2020-05-30 00:00",
+    "year": "2020",
+    "comment": "swarming"
+  },
+  {
+    "hive_number": "123",
+    "event_codes": "f",
+    "date_from": "2020-08-17 00:00",
+    "date_to": "2020-09-01 00:00",
+    "year": "2020",
+    "comment": null
+  },
+  {
+    "hive_number": "123",
+    "event_codes": "qfts",
+    "date_from": "2021-09-02 00:00",
+    "date_to": "2021-09-16 00:00",
+    "year": "2021",
+    "comment": null
+  },
+  {
+    "hive_number": "123",
+    "event_codes": "qfts",
+    "date_from": "2021-03-01 00:00",
+    "date_to": "2021-04-15 00:00",
+    "year": "2021",
+    "comment": null
+  },
+  {
+    "hive_number": "123",
+    "event_codes": "f",
+    "date_from": "2022-12-20 00:00",
+    "date_to": "2022-12-30 00:00",
+    "year": "2022",
+    "comment": null
+  },
+  {
+    "hive_number": "123",
+    "event_codes": "f",
+    "date_from": "2020-12-04 00:00",
+    "date_to": "2020-12-30 00:00",
+    "year": "2020",
+    "comment": "winter feeding"
+  },
+  {
+    "hive_number": "126",
+    "event_codes": "fht",
+    "date_from": "2021-08-14 00:00",
+    "date_to": "2021-08-28 00:00",
+    "year": "2021",
+    "comment": null
+  },
+  {
+    "hive_number": "128",
+    "event_codes": "s",
+    "date_from": "2020-05-08 00:00",
+    "date_to": "2020-05-21 00:00",
+    "year": "2020",
+    "comment": null
+  },
+  {
+    "hive_number": "129",
+    "event_codes": "",
+    "date_from": "2022-03-01 00:00",
+    "date_to": "2022-04-15 00:00",
+    "year": "2022",
+    "comment": null
+  },
+  {
+    "hive_number": "134",
+    "event_codes": "",
+    "date_from": "2022-02-15 00:00",
+    "date_to": "2022-04-21 00:00",
+    "year": "2022",
+    "comment": null
+  },
+  {
+    "hive_number": "135",
+    "event_codes": "qfht",
+    "date_from": "2022-07-20 00:00",
+    "date_to": "2022-08-25 00:00",
+    "year": "2022",
+    "comment": null
+  },
+  {
+    "hive_number": "141",
+    "event_codes": "ht",
+    "date_from": "2021-08-15 00:00",
+    "date_to": "2021-09-15 00:00",
+    "year": "2021",
+    "comment": null
+  },
+  {
+    "hive_number": "151",
+    "event_codes": "",
+    "date_from": "2022-11-08 00:00",
+    "date_to": "2022-12-05 00:00",
+    "year": "2022",
+    "comment": null
+  }
+]

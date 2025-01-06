@@ -338,3 +338,44 @@ def event_shorts_for_part(df: pd.DataFrame):
     has_died = len(df[df['died'] == 1].index) != 0
 
     return f"{'s' if has_swarming else ''}{'q' if has_queencell else ''}{'f' if has_feeding else ''}{'h' if has_honey else ''}{'t' if has_treatment else ''}{'d' if has_died else ''}"
+
+def read_dataset_file(file: str):
+    df = pd.read_csv(file, dtype={
+        't_i_1': float,
+        't_i_2': float,
+        't_i_3': float,
+        't_i_4': float,
+        't_o': float,
+        'weight_kg': float,
+        "weight_delta": float,
+        'numeric.time': float,
+        'h': float,
+        't': float,
+        'p': float,
+    }, low_memory=False, parse_dates=['time'], index_col='time', date_format='%Y-%m-%d %H:%M:%S')
+    return df
+
+def fill_with_historical_pattern(df, columns, hours_ago=24):
+    # Convert index to datetime if it's not already
+    df.index = pd.to_datetime(df.index)
+    
+    # Calculate the time shift
+    time_shift = pd.Timedelta(hours=hours_ago)
+    
+    for col in columns:
+        # Find rows with NaN values
+        nan_mask = df[col].isna()
+        
+        if not nan_mask.any():
+            continue
+            
+        # For each NaN value
+        for idx in df[nan_mask].index:
+            # Get the same time of day from previous period
+            historical_idx = idx - time_shift
+            
+            # If we have data from that time
+            if historical_idx in df.index and not pd.isna(df.loc[historical_idx, col]):
+                df.loc[idx, col] = df.loc[historical_idx, col]
+
+    return df

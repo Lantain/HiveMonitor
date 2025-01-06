@@ -71,3 +71,11 @@ def get_events_indexes(df: pd.DataFrame):
        event_indexes = get_raw_event_indexes(df, event)
        indexes.append(event_indexes)
     return indexes
+
+def get_parsed_event_indexes(df: pd.DataFrame):
+    events = ['swarming', 'queencell', 'feeding', 'honey', 'treatment', 'died']
+    indexes = []
+    for event in events:
+        event_indexes = df[df[event] == 1].index.tolist()
+        indexes.append(event_indexes)
+    return indexes
