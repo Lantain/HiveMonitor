@@ -3,7 +3,7 @@ import matplotlib.dates as mdates
 
 def visualise(df, start_date, end_date, FILE, events_dict):
     # Create figure with 3 subplots
-    fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(15, 12), sharex=True)
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(15, 8), sharex=True)
     fig.suptitle(f'Hive Analysis - {FILE}\n{start_date.strftime("%Y-%m-%d")} to {end_date.strftime("%Y-%m-%d")}', 
                 fontsize=16)
 
@@ -26,10 +26,10 @@ def visualise(df, start_date, end_date, FILE, events_dict):
     ax2.grid(True)
 
     # Plot 3: Humidity
-    ax3.plot(df.index, df['h'], label='humidity')
-    ax3.set_ylabel('Humidity (%)')
-    ax3.legend()
-    ax3.grid(True)
+    # ax3.plot(df.index, df['h'], label='humidity')
+    # ax3.set_ylabel('Humidity (%)')
+    # ax3.legend()
+    # ax3.grid(True)
 
     # # Add event markers to all plots
     # events_dict = {
@@ -42,7 +42,7 @@ def visualise(df, start_date, end_date, FILE, events_dict):
     # }
 
     colors = ['red', 'green', 'blue', 'purple', 'orange', 'brown']
-    for ax in [ax1, ax2, ax3]:
+    for ax in [ax1, ax2]:
         # Set x-axis limits
         ax.set_xlim(start_date, end_date)
         
@@ -60,8 +60,8 @@ def visualise(df, start_date, end_date, FILE, events_dict):
 
     # Format x-axis
     plt.gcf().autofmt_xdate()  # Rotate and align the tick labels
-    ax3.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
-    ax3.xaxis.set_major_locator(mdates.AutoDateLocator())
+    ax2.xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
+    ax2.xaxis.set_major_locator(mdates.AutoDateLocator())
 
     plt.tight_layout()
     plt.show()
