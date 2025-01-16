@@ -46,7 +46,7 @@
       "2019-11-22 09:00",
       "2019-11-23 09:00",
       "2019-11-24 09:00",
-      "2019-11-25 09:00"
+      "2019-11-25 02:00"
     ],
     "ignore": []
   },
@@ -135,7 +135,7 @@
     "comment": "winter prep",
     "swarming": [],
     "queencell": [],
-    "feeding": ["2020-10-09 13:30"],
+    "feeding": ["2020-10-09 13:00"],
     "honey": [],
     "treatment": [],
     "died": [],
@@ -154,7 +154,7 @@
     "honey": [],
     "treatment": [],
     "died": [],
-    "ignore": []
+    "ignore": ["t_i_3", "t_i_2"]
   },
   {
     "hive_number": "47",
@@ -169,7 +169,7 @@
     "honey": [],
     "treatment": [],
     "died": [],
-    "ignore": ["t_i_3", "t_i_4"],
+    "ignore": ["t_i_3", "t_i_4", "t"],
     "isNormal": true
   },
   {
@@ -230,7 +230,7 @@
     "honey": [],
     "treatment": [],
     "died": [],
-    "ignore": []
+    "ignore": ["t_i_1", "t_i_2", "t_i_3"]
   },
   {
     "hive_number": "72",
@@ -245,7 +245,7 @@
     "honey": [],
     "treatment": [],
     "died": [],
-    "ignore": []
+    "ignore": ["t_i_2", "t_i_3"]
   },
   {
     "hive_number": "72",
@@ -260,7 +260,7 @@
     "honey": [],
     "treatment": [],
     "died": [],
-    "ignore": []
+    "ignore": ["t_i_2", "t_i_3"]
   },
   {
     "hive_number": "76",
@@ -430,7 +430,7 @@
     "treatment": [],
     "died": [],
     "ignore": [],
-    "wakeup": ["2021-03-17 00:00", "2021-03-29 00:00"]
+    "wakeup": ["2021-03-24 00:00"]
   },
   {
     "hive_number": "105",
@@ -565,7 +565,7 @@
     "honey": [],
     "treatment": [],
     "died": [],
-    "ignore": []
+    "ignore": ["t_i_3", "t_i_4", "t_i_5"]
   },
   {
     "hive_number": "21",
