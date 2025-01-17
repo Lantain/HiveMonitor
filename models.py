@@ -64,10 +64,10 @@ def lstm_v2(SEGMENT_SIZE: int, sequence_length: int, n_features: int, n_outputs:
 
 # Update early stopping to be more patient
 early_stopping = tf.keras.callbacks.EarlyStopping(
-    monitor='val_loss',
-    patience=15,
+    monitor='loss',
+    patience=10,
     restore_best_weights=True,
-    min_delta=0.001  # Minimum change to qualify as an improvement
+    min_delta=0.01  # Minimum change to qualify as an improvement
 )
 
 # Add learning rate reduction
