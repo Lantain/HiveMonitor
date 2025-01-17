@@ -8,6 +8,7 @@ import random
 
 TIMESTAMPS_FILE = 'timestamps-v4.json'
 STEP = 1
+FOCUS_MARGIN=6
 
 
 def get_all_timestamps(file=TIMESTAMPS_FILE):
@@ -153,7 +154,7 @@ class BeeTimestamp:
                     segment=df.iloc[i:i+segment_size], 
                     features=self.features, 
                     events=self.events,
-                    focus_margin=2
+                    focus_margin=FOCUS_MARGIN
                 )
                 segments.append(s)
         return segments
