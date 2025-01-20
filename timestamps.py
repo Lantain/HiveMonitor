@@ -8,7 +8,8 @@ import random
 
 TIMESTAMPS_FILE = 'timestamps-v4.json'
 STEP = 1
-FOCUS_MARGIN=6
+# 6 For minor events
+FOCUS_MARGIN=2
 
 
 def get_all_timestamps(file=TIMESTAMPS_FILE):
@@ -41,7 +42,6 @@ def is_date_in_range(date: str, left: pd.Timestamp, right: pd.Timestamp):
     date = pd.Timestamp(date)
     return date >= left and date <= right
 
-
 class BeeSegment:
     def __init__(self, timestamp, segment: pd.DataFrame, focus_margin: int = 2, features: list[str] = [], events: list[str] = []):
         self.timestamp: dict = timestamp
@@ -58,7 +58,7 @@ class BeeSegment:
         # Use focused for identification to prevent useless events on borders
         left_focused_segment_date = self.segment_focus.index.min()
         right_focused_segment_date = self.segment_focus.index.max()
-        if len(self.timestamp[event]) > 0:
+        if event in self.timestamp.keys() and len(self.timestamp[event]) > 0:
             results = [is_date_in_range(event_date, left_focused_segment_date, right_focused_segment_date) for event_date in self.timestamp[event]]
             return any(results)
         return False
@@ -68,14 +68,10 @@ class BeeSegment:
         feeding = self.check_segment_event('feeding')
         treatment = self.check_segment_event('treatment')
         honey = self.check_segment_event('honey')
-        died = False
-        wakeup = False
-          
-        if len(self.timestamp['died']) > 0:
-            died = True
-            
-        if 'wakep' in self.timestamp.keys() and len(self.timestamp['wakeup']) > 0:
-            wakeup = True
+        normal = self.check_segment_event('normal')
+        harversting = self.check_segment_event('harversting')
+        wakeup = self.check_segment_event('wakeup')
+        died = self.check_segment_event('died')
         
         return {
             'swarming': 1 if swarming else 0,
@@ -83,7 +79,9 @@ class BeeSegment:
             'died': 1 if died else 0,
             'treatment': 1 if treatment else 0,
             'honey': 1 if honey else 0,
-            'wakeup': 1 if wakeup else 0
+            'wakeup': 1 if wakeup else 0,
+            'normal': 1 if normal else 0,
+            'harversting': 1 if harversting else 0,
         }
         
     def get_label_tulp(self):
@@ -95,12 +93,14 @@ class BeeSegment:
     
     def show_segment(self):
         events_dict = {
-            'Swarming': [pd.Timestamp(ts) for ts in self.timestamp['swarming']],
-            'Feeding': [pd.Timestamp(ts) for ts in self.timestamp['feeding']],
-            'Treatment': [pd.Timestamp(ts) for ts in self.timestamp['treatment']],
-            'Honey': [pd.Timestamp(ts) for ts in self.timestamp['honey']],
-            'Died': [pd.Timestamp(ts) for ts in self.timestamp['died']],
-            'Wakeup': [pd.Timestamp(ts) for ts in self.timestamp['wakeup']],
+            'Swarming': [pd.Timestamp(ts) for ts in self.timestamp['swarming']] if 'swarming' in self.timestamp.keys() else [],
+            'Feeding': [pd.Timestamp(ts) for ts in self.timestamp['feeding']] if 'feeding' in self.timestamp.keys() else [],
+            'Treatment': [pd.Timestamp(ts) for ts in self.timestamp['treatment']] if 'treatment' in self.timestamp.keys() else [],
+            'Honey': [pd.Timestamp(ts) for ts in self.timestamp['honey']] if 'honey' in self.timestamp.keys() else [],
+            'Died': [pd.Timestamp(ts) for ts in self.timestamp['died']] if 'died' in self.timestamp.keys() else [],
+            'Wakeup': [pd.Timestamp(ts) for ts in self.timestamp['wakeup']] if 'wakeup' in self.timestamp.keys() else [],
+            'Normal': [pd.Timestamp(ts) for ts in self.timestamp['normal']] if 'normal' in self.timestamp.keys() else [],
+            'Harversting': [pd.Timestamp(ts) for ts in self.timestamp['harversting']] if 'harversting' in self.timestamp.keys() else [],
         }
         fig, (ax1, ax2, ax3, ax4) = plt.subplots(4, 1, figsize=(15, 8), sharex=True)
         fig.suptitle(
@@ -165,11 +165,11 @@ class BeeTimestamp:
     
     def get_segments_around_event(self, event: str, segment_size: int = 12, hours: int = 24):
         df = self.get_file()
-        event_dates = self.timestamp[event]
+        event_dates = self.timestamp[event] if event in self.timestamp.keys() else []
         event_segments = []
         for event_date in event_dates:
             date_from: pd.Timestamp = (pd.to_datetime(event_date) - pd.Timedelta(hours=hours))
-            date_to: pd.Timestamp = (pd.to_datetime(event_date) + pd.Timedelta(hours=hours/2))
+            date_to: pd.Timestamp = (pd.to_datetime(event_date) + pd.Timedelta(hours=hours)) # /2 for minor events
             sliced_df = df.loc[date_from:date_to]
             segments = self.get_segments(sliced_df, segment_size)
             event_segments.extend(segments)
@@ -181,6 +181,12 @@ class BeeTimestamp:
             if event in self.timestamp.keys() and len(self.timestamp[event]) > 0:
                 segments.extend(self.get_segments_around_event(event, segment_size, hours))
         return segments
+        
+def has_segment_in_segments(segments: list[BeeSegment], segment: BeeSegment):
+    return any(
+        s.left_segment_date == segment.left_segment_date and s.right_segment_date == segment.right_segment_date
+        for s in segments
+    )
         
 class BeeTimestamps:
     def __init__(self, timestamps_file: str, dir: str, features: list[str] = [], events: list[str] = [], step: int = 1):
@@ -209,6 +215,15 @@ class BeeTimestamps:
             segments.extend(
                 bee_timestamp.get_segments_around_events(segment_size=segment_size, hours=hours)
             )
+        return segments
+    
+    def get_segments_for_major_events(self, segment_size: int = 12, hours: int = 24):
+        segments = []
+        for bee_timestamp in self.get_processed_timestamps():
+            esegments = bee_timestamp.get_segments_around_events(segment_size=segment_size, hours=hours)
+            for seg in esegments:
+                if not has_segment_in_segments(segments, seg):
+                    segments.append(seg)
         return segments
 
 # def balance_segments(segments: list[BeeSegment], events: list[str] = ['swarming', 'feeding', 'honey']):

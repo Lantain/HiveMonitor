@@ -41,7 +41,7 @@ def visualise(df, start_date, end_date, FILE, events_dict):
     #     'Died': died_indexes
     # }
 
-    colors = ['red', 'green', 'blue', 'purple', 'orange', 'brown']
+    colors = ['red', 'green', 'blue', 'purple', 'orange', 'brown', 'pink', 'gray', 'black', 'yellow', 'cyan', 'magenta']
     for ax in [ax1, ax2]:
         # Set x-axis limits
         ax.set_xlim(start_date, end_date)
