@@ -56,7 +56,49 @@ def lstm_v2(SEGMENT_SIZE: int, sequence_length: int, n_features: int, n_outputs:
         optimizer=tf.keras.optimizers.Adam(learning_rate=0.0005),
         loss='binary_crossentropy',
         metrics=['accuracy', 
-                tf.keras.metrics.AUC(name='auc'),
+                tf.keras.metrics.Precision(name='precision'),
+                tf.keras.metrics.Recall(name='recall')]
+    )
+    return model
+
+def lstm_v2_categorical(SEGMENT_SIZE: int, sequence_length: int, n_features: int, n_outputs: int):
+    model = tf.keras.Sequential([
+        tf.keras.layers.Input(shape=(sequence_length, n_features)),
+        
+        # Batch normalization on input
+        tf.keras.layers.BatchNormalization(),
+        
+        # First LSTM layer with reduced complexity
+        tf.keras.layers.LSTM(SEGMENT_SIZE * 6, 
+                           kernel_regularizer=tf.keras.regularizers.l2(0.01),
+                           recurrent_regularizer=tf.keras.regularizers.l2(0.01),
+                           return_sequences=True),
+        tf.keras.layers.BatchNormalization(),
+        tf.keras.layers.Dropout(0.3),
+        
+        # Second LSTM layer
+        tf.keras.layers.LSTM(SEGMENT_SIZE * 3, 
+                           kernel_regularizer=tf.keras.regularizers.l2(0.01),
+                           recurrent_regularizer=tf.keras.regularizers.l2(0.01)),
+        tf.keras.layers.BatchNormalization(),
+        tf.keras.layers.Dropout(0.3),
+        
+        # Dense layer with reduced size
+        tf.keras.layers.Dense(SEGMENT_SIZE, 
+                            activation='relu',
+                            kernel_regularizer=tf.keras.regularizers.l2(0.01)),
+        tf.keras.layers.BatchNormalization(),
+        tf.keras.layers.Dropout(0.2),
+        
+        # Output layer
+        tf.keras.layers.Dense(n_outputs, activation='softmax')
+    ])
+
+    # Compile with reduced learning rate
+    model.compile(
+        optimizer=tf.keras.optimizers.Adam(learning_rate=0.0005),
+        loss='categorical_crossentropy',
+        metrics=['accuracy', 
                 tf.keras.metrics.Precision(name='precision'),
                 tf.keras.metrics.Recall(name='recall')]
     )
